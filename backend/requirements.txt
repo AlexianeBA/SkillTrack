@@ -1,0 +1,43 @@
+autopep8
+attrs
+backcall
+certifi
+chardet
+decorator
+Django
+django-environ
+django-extensions
+django-redis
+# flake8
+# flake8-commas
+# flake8-mypy
+gevent
+greenlet
+gunicorn
+idna
+ipython
+ipython-genutils
+jedi
+mccabe
+mypy
+pexpect
+pickleshare
+Pillow
+prompt-toolkit
+psycopg2-binary
+ptyprocess
+pycodestyle
+pyflakes
+Pygments
+pytz
+redis
+requests
+rope
+simplegeneric
+six
+traitlets
+typed-ast
+urllib3
+wcwidth
+Werkzeug
+djangorestframework

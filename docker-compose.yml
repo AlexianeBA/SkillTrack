@@ -1,0 +1,49 @@
+version: '3.3'
+
+volumes:
+    skill_track_data: {}
+
+services:
+  backend:
+    image: backend:latest
+    ports:
+      - 8000:8000
+    build:
+      context: ./backend
+
+    volumes:
+      - ./backend:/app
+
+    restart: on-failure
+    env_file: .env
+  # frontend:
+  #   image: frontend:latest
+  #   ports:
+  #     - 8080:8080
+  #   command: npm run serve
+  #   volumes:
+  #     - ./.env:/app/.env:ro
+  #     - ./frontend:/app
+  #   working_dir: /app
+  #   restart: on-failure
+
+  # postgres:
+  #   image: postgres:10-alpine
+  #   volumes:
+  #     - skill_track_data:/var/lib/postgresql/data
+  #   env_file: .env
+
+
+
+  # nginx:
+  #   image: nginx:alpine
+  #   ports:
+  #     - "8000:80"
+  #   depends_on:
+  #     - backend
+  #   volumes:
+  #     - ./backend/media/:/media/
+  #     - ./backend/staticfiles/:/staticfiles/
+  #     - ./nginx/dev.conf:/etc/nginx/nginx.conf:ro
+  #   logging:
+  #     driver: none
