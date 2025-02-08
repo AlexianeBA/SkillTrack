@@ -47,6 +47,12 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
+    role_choices = [
+        ('admin', 'Admin'),
+        ('manager', 'Manager'),
+        ('employee', 'Employee'),
+        ('rh', 'RH')
+    ]
     email = models.EmailField(
         verbose_name='Email',
         unique=True,
@@ -64,6 +70,11 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name='Token',
         default=uuid4,
         editable=False)
+    role = models.CharField(
+        verbose_name='Role',
+        max_length=20,
+        choices=role_choices,
+        default='rh')
 
     is_admin = models.BooleanField(verbose_name='Admin', default=False)
     is_active = models.BooleanField(verbose_name='Active', default=True)

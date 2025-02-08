@@ -30,11 +30,12 @@ class UserSerializer(serializers.ModelSerializer):
             'avatar',
             'full_name',
             'short_name',
-            'registered_at']
+            'registered_at',
+            'role',]
 
 
 class UserWriteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['email', 'password', 'first_name', 'last_name']
+        fields = ['email', 'password', 'first_name', 'last_name', 'role']

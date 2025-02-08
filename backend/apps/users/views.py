@@ -63,6 +63,7 @@ class UserViewSet(viewsets.ModelViewSet):
         first_name = request.data.get('first_name', None)
         email = request.data.get('email', None)
         password = request.data.get('password', None)
+        role = request.data.get('role', None)
 
         if User.objects.filter(email__iexact=email).exists():
             return Response({'status': 210})
@@ -74,6 +75,7 @@ class UserViewSet(viewsets.ModelViewSet):
             last_name=last_name,
             first_name=first_name,
             is_admin=False,
+            role = request.data.get('role', 'rh'),
         )
         return Response(
             UserSerializer(user).data,
