@@ -29,15 +29,18 @@ DJANGO_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    'django_extensions',
+    'rest_framework.authtoken',
+    'corsheaders'
     
 ]
 
 THIRD_PARTY_APPS = [
 
-    'rest_framework',
-
-    'django_extensions',
+    'rest_framework',    
+    
 ]
+
 
 LOCAL_APPS = [
     'apps.users',
@@ -57,6 +60,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    
 ]
 
 # DEBUG
@@ -65,6 +70,9 @@ MIDDLEWARE = [
 DEBUG = True
 SECRET_KEY = "vE;u+B=M{G`t0RZ[sX(ysXn7Zy9O$,@aD>S+G?6eOz8VLD=uU?"
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173", 
+]
 # DOMAINS
 ALLOWED_HOSTS = ['*']
 DOMAIN = "http://localhost:8000"
@@ -226,7 +234,8 @@ AUTH_USER_MODEL = 'users.User'
 REST_FRAMEWORK = {
     'UPLOADED_FILES_USE_URL': False,
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        #'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication'
     ],
     'DEFAULT_PERMISSION_CLASSES': [],
@@ -236,4 +245,8 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.MultiPartParser',
         'rest_framework.parsers.FileUploadParser'
     ]
+}
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
 }

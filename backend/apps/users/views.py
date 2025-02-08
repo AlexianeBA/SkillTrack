@@ -9,9 +9,11 @@ from django.template.loader import render_to_string
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from django.views.decorators.csrf import csrf_exempt
 
 from apps.users.models import User
 from apps.users.serializers import UserSerializer, UserWriteSerializer
+from rest_framework_simplejwt.tokens import RefreshToken
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -46,7 +48,8 @@ class UserViewSet(viewsets.ModelViewSet):
             return Response(status=status.HTTP_200_OK, data=serializer.data)
         return Response(status=status.HTTP_401_UNAUTHORIZED)
 
-    @action(methods=['POST'], detail=False)
+    @csrf_exempt
+    @action(methods=['POST'], detail=False, permission_classes=[])
     def login(self, request, format=None):
         email = request.data.get('email', None)
         password = request.data.get('password', None)
@@ -54,8 +57,20 @@ class UserViewSet(viewsets.ModelViewSet):
 
         if user:
             login(request, user)
-            return Response(status=status.HTTP_200_OK)
-        return Response(status=status.HTTP_404_NOT_FOUND)
+            refresh = RefreshToken.for_user(user)
+            return Response({
+                'token': str(refresh.access_token),
+                'user': {
+                    'id': user.id,
+                    'email': user.email,
+                }
+            }, status=status.HTTP_200_OK)
+        return Response({
+            'error': 'Invalid credentials'
+        }, status=status.HTTP_401_UNAUTHORIZED)
+
+#http://localhost:8000/api/users/login
+#{"email": "john@doe.com","password": ""}
 
     @action(methods=['POST'], detail=False)
     def register(self, request):
