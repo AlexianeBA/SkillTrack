@@ -29,6 +29,7 @@ DJANGO_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    
 ]
 
 THIRD_PARTY_APPS = [
@@ -40,6 +41,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     'apps.users',
+    'apps.employees'
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
