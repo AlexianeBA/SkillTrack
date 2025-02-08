@@ -16,8 +16,7 @@ class EmployeesSerializer(serializers.ModelSerializer):
     skill_objects = SkillSerializer(many=True, source='skills', read_only=True)
     class Meta:
         model = Employees
-        fields = ['id', 'first_name', 'last_name', 'email', 'position', 'skills', 'skill_objects', 'salary', 'hire_date']
-    
+        fields = ['id', 'first_name', 'last_name', 'email', 'position', 'skills', 'skill_objects', 'salary', 'hire_date', 'cv']    
     def create(self, validated_data):
         skills_data = validated_data.pop('skills', [])
         employee = Employees.objects.create(**validated_data)

@@ -14,6 +14,7 @@ class Employees(models.Model):
     skills = models.ManyToManyField(Skill, related_name="compétences")
     salary = models.DecimalField(max_digits=10, decimal_places=2)
     hire_date = models.DateField(auto_now_add=True)
+    cv = models.FileField(upload_to='cv/', null=True, blank=True)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} - {self.position}"
