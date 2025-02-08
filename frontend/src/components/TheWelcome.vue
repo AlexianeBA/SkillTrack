@@ -7,7 +7,10 @@
     <LoginForm />
   </div>
   <router-link to="/login">
-      <button class="btn btn-primary">Connexion</button>
+      <button class="btn btn-success">Connexion</button>
+  </router-link>
+  <router-link to="/register">
+      <button class="btn btn-success">Inscription</button>
   </router-link>
 </template>
 
