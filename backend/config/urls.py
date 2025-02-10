@@ -8,6 +8,8 @@ from django.conf.urls import include
 from config.api import api
 from django.conf import settings
 from django.conf.urls.static import static
+from apps.employees.views import EmployeeSearchView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
@@ -16,6 +18,7 @@ urlpatterns = [
     path('api/', include(api.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('api/users/', include('apps.users.urls')),
+   path('api/search/', EmployeeSearchView.as_view(), name='employee_search'),
 
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

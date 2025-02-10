@@ -4,6 +4,8 @@ import LoginForm from '../components/LoginForm.vue'
 import Dashboard from '@/components/Dashboard.vue'
 import Register from '@/components/Register.vue'
 import Logout from '@/components/Logout.vue'
+import EmployeeSkillSearch from '@/components/SearchEmployeeSkill.vue'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -30,6 +32,12 @@ const router = createRouter({
       path: '/register',
       name: 'register',
       component: Register,
+      
+    },
+    {
+      path: '/search',
+      name: 'EmployeeSkillSearch',
+      component: EmployeeSkillSearch,
       
     },
     {

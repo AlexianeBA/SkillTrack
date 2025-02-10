@@ -3,6 +3,7 @@
     <div class="max-w-4xl mx-auto">
       <h1 class="text-3xl font-bold mb-8">Tableau de bord</h1>
       <p>Bienvenue sur votre tableau de bord !</p>
+      <button class="btn btn-success" @click="searchEmployees">Rechercher un salarié</button>
       <button class="btn btn-success" @click="logout">Se déconnecter</button>
     </div>
   </div>
@@ -13,6 +14,11 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
+const searchEmployees = () => {
+  
+  router.push('/search');
+};
+
 const logout = () => {
   // Supprimer le token des cookies
   localStorage.removeItem('token');
@@ -21,8 +27,9 @@ const logout = () => {
   // Rediriger vers la page de déconnexion
   router.push('/logout');
 };
+
 </script>
 
-<style scoped>
-/* Ajoutez vos styles ici */
+<style>
+
 </style>

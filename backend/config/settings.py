@@ -31,7 +31,8 @@ DJANGO_APPS = [
     'django.contrib.admin',
     'django_extensions',
     'rest_framework.authtoken',
-    'corsheaders'
+    'corsheaders',
+    'django_filters'
     
 ]
 
@@ -99,7 +100,7 @@ DATABASES = {
      'default': {
          'ENGINE': 'django.db.backends.postgresql_psycopg2',
          'NAME': "skilltrack",
-         'USER': "postgres",
+         'USER': "alexiane",
          'PASSWORD': "alexiane",
          'HOST': 'localhost',
          'PORT': '5432',
@@ -244,6 +245,10 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.FormParser',
         'rest_framework.parsers.MultiPartParser',
         'rest_framework.parsers.FileUploadParser'
+    ],
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.SearchFilter',
     ]
 }
 SIMPLE_JWT = {
