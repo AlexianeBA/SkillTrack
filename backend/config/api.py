@@ -1,6 +1,6 @@
 from rest_framework import routers
 from apps.users.views import UserViewSet
-from apps.employees.views import EmployeesViewSet, SkillViewSet, EmployeeSearchView
+from apps.employees.views import EmployeesViewSet, SkillViewSet, EmployeeSkillSearchView
 
 # Settings
 api = routers.DefaultRouter()

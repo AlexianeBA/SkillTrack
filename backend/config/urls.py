@@ -8,7 +8,7 @@ from django.conf.urls import include
 from config.api import api
 from django.conf import settings
 from django.conf.urls.static import static
-from apps.employees.views import EmployeeSearchView
+from apps.employees.views import EmployeeSkillSearchView, EmployeeSearchByNameView
 
 
 urlpatterns = [
@@ -18,7 +18,7 @@ urlpatterns = [
     path('api/', include(api.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('api/users/', include('apps.users.urls')),
-   path('api/search/', EmployeeSearchView.as_view(), name='employee_search'),
-
+    path('api/search/', EmployeeSkillSearchView.as_view(), name='employee_search'),
+    path('api/search-by-name/', EmployeeSearchByNameView.as_view(), name='employee_search_by_name'),
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import LoginForm from '../components/LoginForm.vue'
-import Dashboard from '@/components/Dashboard.vue'
-import Register from '@/components/Register.vue'
-import Logout from '@/components/Logout.vue'
-import EmployeeSkillSearch from '@/components/SearchEmployeeSkill.vue'
-
+import LoginForm from '../views/LoginForm.vue'
+import Dashboard from '@/views/Dashboard.vue'
+import Register from '@/views/Register.vue'
+import Logout from '@/views/Logout.vue'
+import EmployeeSkillSearch from '@/views/SearchEmployeeSkill.vue'
+import SearchEmployeeByName from '@/views/SearchEmployeeByName.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -35,9 +35,15 @@ const router = createRouter({
       
     },
     {
-      path: '/search',
+      path: '/search-by-skill',
       name: 'EmployeeSkillSearch',
       component: EmployeeSkillSearch,
+      
+    },
+    {
+      path: '/search-by-name',
+      name: 'SearchEmployeeByName',
+      component: SearchEmployeeByName,
       
     },
     {
