@@ -1,6 +1,6 @@
 @import './base.css';
 @import "tailwindcss";
-
+@plugin "daisyui";
 
 html, body {
   height: 100%;

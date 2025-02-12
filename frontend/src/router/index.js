@@ -6,6 +6,8 @@ import Register from '@/views/Register.vue'
 import Logout from '@/views/Logout.vue'
 import EmployeeSkillSearch from '@/views/SearchEmployeeSkill.vue'
 import SearchEmployeeByName from '@/views/SearchEmployeeByName.vue'
+import ListEmployees from '@/views/ListEmployees.vue'
+import AddEmployees from '@/views/AddEmployees.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -44,6 +46,18 @@ const router = createRouter({
       path: '/search-by-name',
       name: 'SearchEmployeeByName',
       component: SearchEmployeeByName,
+      
+    },
+    {
+      path: '/list-employees',
+      name: 'ListEmployees',
+      component: ListEmployees,
+      
+    },
+    {
+      path: '/add-employees',
+      name: 'AddEmployees',
+      component: AddEmployees,
       
     },
     {

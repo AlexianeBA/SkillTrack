@@ -16,6 +16,9 @@
         <button class="btn btn-secondary btn-lg w-full shadow-md transition-transform transform hover:scale-105" @click="searchEmployeesByName">
           🔍 Rechercher par nom
         </button>
+        <button class="btn btn-secondary btn-lg w-full shadow-md transition-transform transform hover:scale-105" @click="listEmployees">
+          Afficher la liste des employés
+        </button>
         
       </div>
     </div>
@@ -33,6 +36,10 @@ const searchEmployees = () => {
 
 const searchEmployeesByName = () => {
   router.push('/search-by-name');
+};
+
+const listEmployees = () => {
+  router.push('/list-employees');
 };
 
 const logout = () => {
