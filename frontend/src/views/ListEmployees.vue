@@ -33,6 +33,14 @@
               </td>
               <td>{{ employee.salary }}</td>
               <td>{{ employee.hire_date }}</td>
+              <td>
+                <button class="btn btn-secondary btn-sm mr-2" @click="viewEmployee(employee.id)">
+                  🔍
+                </button>
+                <button class="btn btn-error btn-sm" @click="deleteEmployee(employee.id)">
+                  ❌
+                </button>              
+              </td>
             </tr>
           </tbody>
         </table>
@@ -64,7 +72,24 @@ export default {
     addEmployees() {
       // Rediriger vers la page d'ajout d'employé
       this.$router.push('/add-employees');
-    }
+    },
+    async deleteEmployee(employeeId) {
+      try {
+        const response = await fetch(`http://localhost:8000/api/employees/${employeeId}/`, {
+          method: 'DELETE'
+        });
+        if (response.ok) {
+          this.fetchEmployees();
+        } else {
+          console.error('Error deleting employee:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error deleting employee:', error);
+      }
+    },
+    viewEmployee(employeeId) {
+      this.$router.push(`/employee/${employeeId}`);
+    },
   }
 };
 </script>

@@ -8,6 +8,8 @@ import EmployeeSkillSearch from '@/views/SearchEmployeeSkill.vue'
 import SearchEmployeeByName from '@/views/SearchEmployeeByName.vue'
 import ListEmployees from '@/views/ListEmployees.vue'
 import AddEmployees from '@/views/AddEmployees.vue'
+import EmployeeProfile from '@/views/EmployeeProfile.vue';
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -64,7 +66,12 @@ const router = createRouter({
       path: '/logout',
       name: 'logout',
       component: Logout
-    }
+    },
+    {
+      path: '/employee/:id',
+      name: 'EmployeeProfile',
+      component: EmployeeProfile,
+    },
   ],
 })
 router.beforeEach((to, from, next) => {
