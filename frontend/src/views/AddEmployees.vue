@@ -28,19 +28,19 @@
           <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="position" type="text" v-model="position" required>
         </div>
         <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="skills">
-                Compétences
-            </label>
-            <select 
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                id="skills" 
-                v-model="selectedSkill"
-                required
-            >
-                <option v-for="skill in skills" :key="skill.id" :value="skill.id">
-                {{ skill.name }}
-                </option>
-            </select>
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="skills">Compétences</label>
+          <select class="shadow border rounded w-full py-2 px-3" id="skills" v-model="selectedSkills" multiple required @change="handleSkillChange">
+            <option v-for="skill in skills" :key="skill.id" :value="skill.id">
+              {{ skill.name }}
+            </option>
+            <option value="add_new">➕ Ajouter une compétence...</option>
+          </select>
+        </div>
+        <div v-if="selectedSkills.includes('add_new')" class="mt-2 flex">
+          <input type="text" v-model="newSkill" placeholder="Nouvelle compétence..." class="shadow border rounded py-2 px-3 flex-grow">
+          <button @click.prevent="addNewSkill" class="ml-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">
+            Ajouter
+          </button>
         </div>
         <div class="mb-4">
           <label class="block text-gray-700 text-sm font-bold mb-2" for="salary">
@@ -78,8 +78,9 @@ export default {
       last_name: '',
       email: '',
       position: '',
-      selectedSkill: [],
-      skills: '',
+      selectedSkills: [],
+      newSkill:'',
+      skills: [],
       salary: '',
       hire_date: '',
       cv: null
@@ -103,6 +104,36 @@ export default {
         console.error('Erreur lors du chargement des compétences:', error);
       }
     },
+    handleSkillChange() {
+      if (this.selectedSkills.includes("add_new")) {
+        console.log("Ajout d'une nouvelle compétence activé");
+      }
+    },
+    async addNewSkill() {
+      if (!this.newSkill.trim()) return;
+
+      try {
+        const response = await fetch('http://localhost:8000/api/skills/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: this.newSkill })
+        });
+
+        if (!response.ok) {
+          throw new Error(`Erreur HTTP: ${response.status}`);
+        }
+
+        const newSkill = await response.json();
+        this.skills.push(newSkill); 
+        this.selectedSkills.push(newSkill.id); 
+        this.newSkill = '';
+        this.selectedSkills = this.selectedSkills.filter(skill => skill !== 'add_new');
+
+      } catch (error) {
+        console.error('Erreur lors de l’ajout de la compétence:', error);
+      }
+    },
+
     async addEmployee() {
       try {
         const formData = new FormData();
@@ -115,11 +146,10 @@ export default {
         formData.append('cv', this.cv);
 
         this.selectedSkills.forEach(skillId => {
-          formData.append('skills', skillId);
+          formData.append('skills[]', skillId);
         });
 
-
-        console.log('FormData:', ...formData); // Log pour déboguer
+        console.log('FormData:', ...formData); 
 
         const response = await fetch('http://localhost:8000/api/employees/', {
           method: 'POST',
