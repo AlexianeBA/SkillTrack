@@ -1,25 +1,39 @@
 <template>
-  <div class="h-screen w-full flex flex-col bg-base-200">
-    
-    <div class="w-full h-full bg-white p-50">
-      <div class="flex justify-between items-center mb-6">
-        <h1 class="text-4xl font-extrabold text-primary">Tableau de bord</h1>
-        <button class="btn btn-error btn-lg shadow-md transition-transform transform hover:scale-105" @click="logout">
-          🚪 Se déconnecter
-        </button>
+  <div class="min-h-screen bg-base-200">
+    <Navbar />
+    <div class="container mx-auto px-6 py-10">
+      <div class="text-center">
+        <h1 class="text-5xl font-bold text-primary">📊 Tableau de Bord</h1>
+        <p class="text-lg text-gray-600 mt-2">Bienvenue sur votre espace de gestion.</p>
       </div>
-      <p class="text-center mb-6 text-gray-600">Bienvenue sur votre tableau de bord !</p>
-      <div class="flex flex-col space-y-4 flex-grow">
-        <button class="btn btn-primary btn-lg w-full shadow-md transition-transform transform hover:scale-105" @click="searchEmployees">
-          🔍 Rechercher par compétences
-        </button>
-        <button class="btn btn-secondary btn-lg w-full shadow-md transition-transform transform hover:scale-105" @click="searchEmployeesByName">
-          🔍 Rechercher par nom
-        </button>
-        <button class="btn btn-secondary btn-lg w-full shadow-md transition-transform transform hover:scale-105" @click="listEmployees">
-          Afficher la liste des employés
-        </button>
+
+      <!-- Cartes d'actions -->
+      <div class="grid gap-6 mt-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         
+        <div class="card bg-white shadow-xl hover:shadow-2xl transition-all transform hover:scale-105">
+          <div class="card-body items-center text-center">
+            <h2 class="card-title text-primary">🔍 Rechercher par compétences</h2>
+            <p class="text-gray-500">Trouvez les employés en fonction de leurs compétences.</p>
+            <button class="btn btn-primary w-full" @click="searchEmployees">Rechercher</button>
+          </div>
+        </div>
+
+        <div class="card bg-white shadow-xl hover:shadow-2xl transition-all transform hover:scale-105">
+          <div class="card-body items-center text-center">
+            <h2 class="card-title text-secondary">🔎 Rechercher par nom</h2>
+            <p class="text-gray-500">Trouvez un employé en saisissant son nom.</p>
+            <button class="btn btn-secondary w-full" @click="searchEmployeesByName">Rechercher</button>
+          </div>
+        </div>
+
+        <div class="card bg-white shadow-xl hover:shadow-2xl transition-all transform hover:scale-105">
+          <div class="card-body items-center text-center">
+            <h2 class="card-title text-accent">👥 Liste des employés</h2>
+            <p class="text-gray-500">Affichez la liste complète des employés.</p>
+            <button class="btn btn-accent w-full" @click="listEmployees">Afficher</button>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -27,6 +41,7 @@
 
 <script setup>
 import { useRouter } from 'vue-router';
+import Navbar from '@/components/NavbarConnected.vue';
 
 const router = useRouter();
 
@@ -41,16 +56,4 @@ const searchEmployeesByName = () => {
 const listEmployees = () => {
   router.push('/list-employees');
 };
-
-const logout = () => {
-  localStorage.removeItem('token');
-  localStorage.removeItem('user');
-  router.push('/logout');
-};
 </script>
-
-<style scoped>
-button {
-  transition: all 0.3s ease-in-out;
-}
-</style>

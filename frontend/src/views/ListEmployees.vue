@@ -1,4 +1,7 @@
 <template>
+  <div>
+    <Navbar />
+  </div>
   <div class="min-h-screen bg-gray-100 p-8">
     <div class="max-w-7xl mx-auto bg-white shadow-lg rounded-lg p-8">
       <div class="flex justify-between items-center mb-8">
@@ -50,7 +53,12 @@
 </template>
 
 <script>
+import Navbar from '@/components/NavbarConnected.vue';
 export default {
+  components: {
+    Navbar
+  },
+  
   data() {
     return {
       employees: []

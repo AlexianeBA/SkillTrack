@@ -1,4 +1,6 @@
 <template>
+  <div>
+    <Navbar />  
     <div class="flex items-center justify-center min-h-screen bg-gray-100">
       <div class="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
         <h2 class="text-2xl font-bold text-center">Inscription</h2>
@@ -81,9 +83,11 @@
         </form>
       </div>
     </div>
+  </div>
 </template>
 
 <script setup>
+import Navbar from '@/components/Navbar.vue';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 

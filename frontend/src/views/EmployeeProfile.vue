@@ -1,4 +1,6 @@
 <template>
+  <div>
+    <Navbar />
     <div class="min-h-screen bg-gray-100 p-8">
       <div class="max-w-7xl mx-auto bg-white shadow-lg rounded-lg p-8">
         <h1 class="text-3xl font-bold mb-8 text-center">Profil de l'employé</h1>
@@ -17,10 +19,15 @@
         </div>
       </div>
     </div>
+  </div>
   </template>
   
   <script>
+  import Navbar from '@/components/NavbarConnected.vue';
   export default {
+    components: {
+      Navbar
+    },
     data() {
       return {
         employee: null

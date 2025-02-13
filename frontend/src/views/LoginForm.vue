@@ -1,52 +1,60 @@
 <template>
-  <div class="flex items-center justify-center min-h-screen bg-gray-100">
-    <div class="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
-      <h2 class="text-2xl font-bold text-center">Connexion</h2>
-      <form @submit.prevent="login">
-        <div class="form-control">
-          <label class="label">
-            <span class="label-text">Email</span>
-          </label>
-          <input 
-            type="email" 
-            v-model="email" 
-            placeholder="Email" 
-            class="input input-bordered" 
-            required 
-          />
-        </div>
-        <div class="form-control">
-          <label class="label">
-            <span class="label-text">Mot de passe</span>
-          </label>
-          <input 
-            type="password" 
-            v-model="password" 
-            placeholder="Mot de passe" 
-            class="input input-bordered" 
-            required 
-          />
-        </div>
-        <div v-if="error" class="text-red-500 text-sm mt-2">
-          {{ error }}
-        </div>
-        <div class="form-control mt-6">
-          <button 
-            type="submit" 
-            class="btn btn-primary"
-            :disabled="loading"
-          >
-            {{ loading ? 'Connexion...' : 'Se connecter' }}
-          </button>
-        </div>
-      </form>
+  <div>
+    <Navbar />
+    <div class="flex items-center justify-center min-h-screen bg-gray-100">
+      
+      <div class="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
+        <h2 class="text-2xl font-bold text-center">Connexion</h2>
+        <form @submit.prevent="login">
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Email</span>
+            </label>
+            <input 
+              type="email" 
+              v-model="email" 
+              placeholder="Email" 
+              class="input input-bordered" 
+              required 
+            />
+          </div>
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Mot de passe</span>
+            </label>
+            <input 
+              type="password" 
+              v-model="password" 
+              placeholder="Mot de passe" 
+              class="input input-bordered" 
+              required 
+            />
+          </div>
+          <div v-if="error" class="text-red-500 text-sm mt-2">
+            {{ error }}
+          </div>
+          <div class="form-control mt-6">
+            <button 
+              type="submit" 
+              class="btn btn-primary"
+              :disabled="loading"
+            >
+              {{ loading ? 'Connexion...' : 'Se connecter' }}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
+  
+  
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import Navbar from '@/components/Navbar.vue';
 import { useRouter } from 'vue-router';
+
 
 const router = useRouter();
 const email = ref('');
@@ -94,6 +102,7 @@ const login = async () => {
     loading.value = false;
   }
 };
+
 </script>
 
 <style scoped>

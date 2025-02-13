@@ -1,28 +1,63 @@
 <template>
-    <div class="container mx-auto p-4">
-      <h1 class="text-2xl font-bold mb-4">Search Employees by Name</h1>
-      <div class="mb-4">
-        <input
-          type="text"
-          v-model="searchName"
-          placeholder="Enter name"
-          class="input form-control"
-        />
-      </div>
-      <button @click="searchEmployeesByName" class="btn btn-primary">Search</button>
-      <div v-if="employees.length" class="mt-4">
-        <h2 class="text-xl font-semibold">Results:</h2>
-        <ul>
-          <li v-for="employee in employees" :key="employee.id" class="mt-2">
-            {{ employee.first_name }} {{ employee.last_name }} - {{ employee.position }}
-          </li>
-        </ul>
+  <div >
+    <!-- Navbar -->
+    <Navbar />
+
+    <div class="container mx-auto px-6 py-10">
+      <div class="bg-white p-6 rounded-lg shadow-lg">
+        <h1 class="text-3xl font-bold text-primary text-center mb-6">🔎 Rechercher un employé</h1>
+
+        <!-- Champ de recherche -->
+        <div class="mb-4">
+          <input 
+            type="text"
+            v-model="searchName"
+            placeholder="Entrez un nom"
+            class="input input-bordered input-lg w-full"
+          />
+        </div>
+
+        <!-- Bouton de recherche -->
+        <button 
+          @click="searchEmployeesByName" 
+          class="btn btn-primary w-full text-lg font-semibold transition-transform hover:scale-105"
+        >
+          🔍 Rechercher
+        </button>
+
+        <!-- Résultats -->
+        <div v-if="employees.length" class="mt-6">
+          <h2 class="text-xl font-semibold text-gray-700 mb-4">📋 Résultats :</h2>
+          
+          <div class="space-y-3">
+            <div 
+              v-for="employee in employees" 
+              :key="employee.id" 
+              class="card bg-base-100 shadow-md p-4 rounded-lg"
+            >
+              <p class="text-lg font-medium">
+                {{ employee.first_name }} {{ employee.last_name }} - 
+                <span class="text-primary">{{ employee.position }}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Message si aucun résultat -->
+        <div v-else-if="searchName && employees.length === 0" class="text-center mt-4 text-gray-500">
+          Aucun employé trouvé ❌
+        </div>
       </div>
     </div>
-  </template>
+  </div>
+</template>
   
   <script>
+  import Navbar from '@/components/NavbarConnected.vue';
   export default {
+    components: {
+    Navbar
+  },
     data() {
       return {
         searchName: '',
