@@ -9,6 +9,8 @@ import SearchEmployeeByName from '@/views/SearchEmployeeByName.vue'
 import ListEmployees from '@/views/ListEmployees.vue'
 import AddEmployees from '@/views/AddEmployees.vue'
 import EmployeeProfile from '@/views/EmployeeProfile.vue';
+import AddSkills from '@/views/AddSkills.vue'
+import ListOfSkills from '@/views/ListOfSkills.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -42,6 +44,18 @@ const router = createRouter({
       path: '/search-by-skill',
       name: 'EmployeeSkillSearch',
       component: EmployeeSkillSearch,
+      
+    },
+    {
+      path: '/add-skills',
+      name: 'AddSkills',
+      component: AddSkills,
+      
+    },
+    {
+      path: '/list-skills',
+      name: 'ListOfSkills',
+      component: ListOfSkills,
       
     },
     {

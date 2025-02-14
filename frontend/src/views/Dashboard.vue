@@ -34,6 +34,14 @@
           </div>
         </div>
 
+        <div class="card bg-white shadow-xl hover:shadow-2xl transition-all transform hover:scale-105">
+          <div class="card-body items-center text-center">
+            <h2 class="card-title text-info">🔎 Ajouter un salarié</h2>
+            <p class="text-gray-500">Ajouter un nouveau salarié arrivant. </p>
+            <button class="btn btn-info w-full" @click="addEmployees">Ajouter</button>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -47,6 +55,9 @@ const router = useRouter();
 
 const searchEmployees = () => {
   router.push('/search-by-skill');
+};
+const addEmployees = () => {
+  router.push('/add-employees');
 };
 
 const searchEmployeesByName = () => {
